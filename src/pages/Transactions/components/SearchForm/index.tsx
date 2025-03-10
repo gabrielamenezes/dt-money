@@ -10,7 +10,7 @@ const searchFormSchema = z.object({
 
 type SearchFormInputs = z.infer<typeof searchFormSchema>;
 
-export function SearchFor() {
+export function SearchForm() {
   const {
     register,
     handleSubmit,
