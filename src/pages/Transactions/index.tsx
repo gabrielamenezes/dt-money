@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
 import { SearchFor } from "./components/SearchForm";
@@ -8,6 +8,7 @@ import {
   TransactionsTable,
 } from "./style";
 import { TransactionsContext } from "../../contexts/TransactionsContext";
+import { dateFormat, priceFormatter } from "../../utils/formatter";
 
 export function Transactions() {
   const { transactions } = useContext(TransactionsContext);
@@ -25,12 +26,13 @@ export function Transactions() {
                 <tr key={transaction.id}>
                   <td width="50%">{transaction.description}</td>
                   <td>
-                    <PriceHighlight
-                      variant={transaction.type}
-                    >{`R$ ${transaction.amount}`}</PriceHighlight>
+                    <PriceHighlight variant={transaction.type}>
+                      {transaction.type === "income" ? "+ " : "- "}
+                      {priceFormatter.format(transaction.amount)}
+                    </PriceHighlight>
                   </td>
                   <td>{transaction.category}</td>
-                  <td>{transaction.createdAt}</td>
+                  <td>{dateFormat.format(new Date(transaction.createdAt))}</td>
                 </tr>
               );
             })}
