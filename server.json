@@ -8,7 +8,6 @@
       "category": "Venda",
       "createdAt": "2021-05-01T00:00:00.000Z"
     },
-
     {
       "id": 2,
       "amount": 50,
@@ -16,6 +15,14 @@
       "description": "Hamburguer",
       "category": "Alimentação",
       "createdAt": "2021-05-01T00:00:00.000Z"
+    },
+    {
+      "description": "Memórias Póstumas de Brás Cubas",
+      "amount": 19,
+      "category": "Leitura",
+      "type": "outcome",
+      "createdAt": "2025-03-17T17:07:29.521Z",
+      "id": 3
     }
   ]
 }
