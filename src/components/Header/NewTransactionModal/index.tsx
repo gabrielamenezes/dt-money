@@ -23,9 +23,13 @@ const newTransactionFormSchema = z.object({
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>;
 
 export const NewTransactionModal = () => {
-  // NOTE - Ao utilizar a extensão React DevTools, é possível perceber que o componente NewTransactionModal foi re-renderizado ao realizar uma busca. Isso aconteceu porque o contexto foi alterado — mesmo que a função utilizada no componente (createTransaction) não tenha mudado. Na verdade, o que foi atualizado foi apenas a lista de transações.
-  // NOTE - Com a Context API padrão, não é possível indicar que um componente observe apenas uma parte específica do contexto (como uma função). Sempre que qualquer informação dentro do contexto for modificada, **todos** os componentes que o utilizam serão re-renderizados.
-  // NOTE - O hook `useContextSelector` (lib) resolve esse problema. Com ele, passamos uma função como segundo argumento, que recebe o contexto e retorna **apenas** a informação que queremos observar. Dessa forma, o componente será re-renderizado **somente** quando essa informação específica for alterada.
+  /* 
+    // NOTE - useContextSelector e o problema de re-renderização
+    Ao utilizar a extensão React DevTools, é possível perceber que o componente NewTransactionModal foi re-renderizado ao realizar uma busca. Isso aconteceu porque o contexto foi alterado — mesmo que a função utilizada no componente (createTransaction) não tenha mudado. Na verdade, o que foi atualizado foi apenas a lista de transações.
+    Com a Context API padrão, não é possível indicar que um componente observe apenas uma parte específica do contexto (como uma função). Sempre que qualquer informação dentro do contexto for modificada, **todos** os componentes que o utilizam serão re-renderizados.
+    O hook `useContextSelector` (lib) resolve esse problema. Com ele, passamos uma função como segundo argumento, que recebe o contexto e retorna **apenas** a informação que queremos observar. Dessa forma, o componente será re-renderizado **somente** quando essa informação específica for alterada.
+  */
+  
   const createTransaction = useContextSelector(
     TransactionsContext,
     (context) => {
